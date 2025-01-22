@@ -1,0 +1,83 @@
+body {
+  background-color: aqua;
+  font-family: cursive;
+  font-size: 90%;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  margin-bottom: -3px;
+}
+
+legend {
+  margin: 0 auto;
+  font-size: 16 auto;
+}
+
+fieldset {
+  background-color: #feffdf;
+  margin-right: 400px;
+  margin-left: 400px;
+  text-align: center;
+  border-radius: 5px;
+  border-width: 5px;
+  border: solid yellow;
+}
+
+input {
+  justify-content: center;
+  border-radius: 10px;
+  border: solid black;
+  border-width: 1px;
+}
+
+label {
+  justify-content: center;
+}
+
+br {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 50px;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  border: solid black;
+  border-width: 1px;
+}
+
+.buttonAlign{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.box {
+  width: 50px;
+  height: 25px;
+  display: inline-block;
+  margin: 0 10px;
+  text-align: center;
+  color: white;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.red {
+  background-color: red;
+}
+
+.purple {
+  background-color: purple;
+}
