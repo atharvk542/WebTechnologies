@@ -8,7 +8,7 @@
   </head>
   <body>
     <h2>Please enter your details for our dating website</h2>
-    <form action="/submit" method="POST">
+    <form action="./submit.html" method="get" enctype="multipart/form-data">
       <fieldset>
         <legend>Your face</legend>
         <label for="image">Your Image:</label>
@@ -22,11 +22,11 @@
         <input type="text" id="name" name="name" required />
 
         <label for="gender"><br />Gender:</label>
-        <input type="radio" id="male" name="gender" />
+        <input type="radio" id="male" name="gender" value="male" />
         <label for="male">Male</label>
-        <input type="radio" id="female" name="gender" />
+        <input type="radio" id="female" name="gender" value="female" />
         <label for="female">Female</label>
-        <input type="radio" id="other" name="gender" />
+        <input type="radio" id="other" name="gender" value="other" />
         <label for="other">Other</label>
 
         <label for="age"><br />Age:</label>
@@ -349,17 +349,19 @@
           required
         ></textarea>
 
-        <label for="method" required><br />Preferred method to contact you:</label>
-        <input type="checkbox" id="checkboxEmail" name="method"/>
+        <label for="method" required
+          ><br />Preferred method to contact you:</label
+        >
+        <input type="checkbox" id="checkboxEmail" name="method" />
         <label for="checkboxEmail">Email</label>
-        <input type="checkbox" id="checkboxText" name="method"/>
-        <label for="checkboxEmail">Text</label>
-        <input type="checkbox" id="checkboxPhone" name="method"/>
-        <label for="checkboxEmail">Phone</label>
+        <input type="checkbox" id="checkboxText" name="method" />
+        <label for="checkboxText">Text</label>
+        <input type="checkbox" id="checkboxPhone" name="method" />
+        <label for="checkboxPhone">Phone</label>
       </fieldset>
 
       <div class="buttonAlign">
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit">Submit</button>
       </div>
     </form>
   </body>
