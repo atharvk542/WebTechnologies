@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="madlib.html">Mad Lib</a></li>
+        <li><a href="calculator.html">Calculator</a></li>
+      </ul>
+    </nav>
+    <h1>Calculator</h1>
+    <form id="calculator-form">
+      <label for="expression">Enter an expression:</label>
+      <input type="text" id="expression" placeholder="3 + 5" required /><br />
+      <button type="button" onclick="calculateExpression()">Calculate</button>
+    </form>
+    <div id="result"></div>
+    <button onclick="reloadPage()">Try Again</button>
+  </body>
+</html>

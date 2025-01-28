@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2 id="welcomeMessage">
+      Welcome to my site, Harry Potter. Please click on one of the buttons
+      below:
+    </h2>
+
+    <!-- Popup Section -->
+    <div id="popup" class="popup">
+      <p></p>
+    </div>
+
+    <!-- Image Section -->
+    <div class="image-container">
+      <img src="image.png" alt="Cute Puppy" id="mainImage" />
+    </div>
+
+    <!-- Button to Click -->
+    <div class="button-container">
+      <button id="popupButton" class="clickme">Click me!</button>
+    </div>
+
+    <!-- Color Buttons -->
+    <div class="color-buttons">
+      <button class="purple" id="purple"><strong>Purple</strong></button>
+      <button class="blue" id="blue"><strong>Blue</strong></button>
+      <button class="green" id="green"><strong>Green</strong></button>
+      <button class="yellow" id="yellow"><strong>Yellow</strong></button>
+    </div>
+
+    <script>
+      // Prompt the user for their name
+      const userName = prompt("Please enter your name:", "Harry Potter");
+      if (userName) {
+        // Replace the placeholder text with the user's input
+        const welcomeMessage = document.getElementById("welcomeMessage");
+        welcomeMessage.textContent = `Welcome to my site, ${userName}. Please click on one of the buttons below:`;
+      }
+
+      const popupButton = document.getElementById("popupButton");
+      const popup = document.getElementById("popup");
+      const purple = document.getElementById("purple");
+      const blue = document.getElementById("blue");
+      const green = document.getElementById("green");
+      const yellow = document.getElementById("yellow");
+      const mainImage = document.getElementById("mainImage");
+
+      // Add event listener to change the image on click
+      popupButton.addEventListener("click", () => {
+        // Check the current image and switch to the other one
+        if (mainImage.src.includes("image.png")) {
+          mainImage.src = "dog.png"; // Change to dog.png
+        } else {
+          mainImage.src = "image.png"; // Change to image.png
+        }
+
+        // Show the popup
+        showPopup("Image changed!", 2);
+      });
+
+      // Event listeners for changing button color
+      purple.addEventListener("click", () => {
+        document.body.style.backgroundColor = "purple";
+        showPopup("Background color purple!", 2); // Show popup with the custom message
+      });
+
+      blue.addEventListener("click", () => {
+        document.body.style.backgroundColor = "blue";
+        showPopup("Background color blue!", 2); // Show popup with the custom message
+      });
+
+      green.addEventListener("click", () => {
+        document.body.style.backgroundColor = "green";
+        showPopup("Background color green!", 2); // Show popup with the custom message
+      });
+
+      yellow.addEventListener("click", () => {
+        document.body.style.backgroundColor = "yellow";
+        showPopup("Background color yellow!", 2); // Show popup with the custom message
+      });
+
+      function showPopup(message, timeoutInSeconds) {
+        const popupMessage = popup.querySelector("p");
+
+        // Set the text of the popup
+        popupMessage.textContent = message;
+
+        // Show the popup
+        popup.style.display = "block";
+        popup.style.opacity = 1;
+
+        // Hide the popup after the specified time
+        setTimeout(() => {
+          popup.style.display = "none"; // Hide the popup after the specified time
+        }, timeoutInSeconds * 1000); // Convert seconds to milliseconds
+      }
+    </script>
+  </body>
+</html>
