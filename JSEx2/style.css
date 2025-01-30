@@ -1,11 +1,23 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
+  background-color: #666;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: white;
+  padding: 10px 0;
 }
 
 nav ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
+  text-align: center;
 }
 
 nav ul li {
@@ -13,14 +25,45 @@ nav ul li {
   margin-right: 15px;
 }
 
-h1 {
-  color: #333;
+nav ul li a {
+  text-decoration: none;
+  color: black;
+  font-style: italic;
+  font-size: 18px;
 }
 
-#story,
-#result {
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  font-style: italic;
   margin-top: 20px;
-  color: red;
-  font-weight: bold;
-  text-transform: uppercase;
+}
+
+.subtitle {
+  font-style: italic;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.section {
+  width: 30%;
+  text-align: left;
+}
+
+.section img {
+  width: 100%; /* Ensures image fits its container */
+  max-width: 150px; /* Limits image size */
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
 }
