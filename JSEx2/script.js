@@ -1,12 +1,12 @@
 function calculateExpression() {
   //Retrieves the expression
-  const expression = document.getElementById("expression").value || "3 + 5";
+  let expression = prompt("Enter an expression: ", "3 + 5");
 
   //Tries to resolve expression, and catches error if expression is invalid
-  try {
-    const result = eval(expression).toFixed(2);
+  if (expression) {
+    let result = eval(expression).toFixed(2);
     document.getElementById("result").innerText = `${expression} = ${result}`;
-  } catch (e) {
+  } else {
     alert("Invalid expression. Please try again.");
   }
 }
@@ -14,17 +14,18 @@ function calculateExpression() {
 //Generates a madlib based on your name, a verb, and an adjective using prompts
 //Otherwise alerts if not all values are used
 function generateMadLib() {
-  let name = prompt("Enter your name:");
-  let verb = prompt("Enter a verb:");
-  let adjective = prompt("Enter an adjective:");
+  let name = prompt("Enter your name:", "Alex") || "Someone"; // Default to "Someone" if left empty
+  let verb = prompt("Enter a verb:", "dance") || "run"; // Default to "run" if left empty
+  let adjective = prompt("Enter an adjective:", "graceful") || "amazing"; // Default to "amazing" if left empty
 
-  //Sets inner text of madlib page to specified story, otherwise generates alert
-  if (name && verb && adjective) {
-    let story = `${name} loves to ${verb} in the most ${adjective} way possible!`;
-    document.getElementById("story").innerText = story;
-  } else {
-    alert("Please enter all values to create a story!");
-  }
+  // Generate the story with the provided or default values
+  let story = `${name} loves to ${verb} in the most ${adjective} way possible!`;
+
+  // Update all four story variations
+  document.getElementById("story-lowercase").innerText = story.toLowerCase();
+  document.getElementById("story-uppercase").innerText = story.toUpperCase();
+  document.getElementById("story-red").innerText = story;
+  document.getElementById("story-bold").innerText = story;
 }
 
 function reloadPage() {

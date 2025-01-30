@@ -52,6 +52,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .section {
@@ -66,4 +67,27 @@ h1 {
   display: block;
   margin: 10px auto;
   border-radius: 10px;
+}
+
+.story {
+  font-size: 20px; /* Increased font size for readability */
+  margin-top: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#story-lowercase {
+  text-transform: lowercase;
+}
+
+#story-uppercase {
+  text-transform: uppercase;
+}
+
+#story-red {
+  color: red;
+}
+
+#story-bold {
+  font-weight: bold;
 }
