@@ -1,13 +1,15 @@
 function calculateExpression() {
-  //Retrieves the expression
-  let expression = prompt("Enter an expression: ", "3 + 5");
+  // Prompt the user for an expression instead of using an input field
+  let expression = prompt("Enter an expression:", "3 + 5");
 
-  //Tries to resolve expression, and catches error if expression is invalid
+  // Try to evaluate the expression, catching any errors
   if (expression) {
-    let result = eval(expression).toFixed(2);
-    document.getElementById("result").innerText = `${expression} = ${result}`;
-  } else {
-    alert("Invalid expression. Please try again.");
+    try {
+      let result = eval(expression).toFixed(2);
+      document.getElementById("result").innerText = `${expression} = ${result}`;
+    } catch (error) {
+      alert("Invalid expression. Please try again.");
+    }
   }
 }
 
