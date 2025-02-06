@@ -7,42 +7,78 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Fibonacci Sum Calculator</h1>
-    <script>
-      function calculateFibonacci(n) {
-        let fib = [1, 1];
-        let sumEven = 0;
+    <div class="container">
+      <aside aria-label="F" class="left">
+        <h2>History of Fibonacci</h2>
+        <p>
+          Leonardo of Pisa, known as Fibonacci, introduced the Fibonacci
+          sequence to Europe in his book Liber Abaci (1202). The sequence
+          describes numbers where each number is the sum of the two preceding
+          ones.
+        </p>
 
-        for (let i = 2; i < n; i++) {
-          fib[i] = fib[i - 1] + fib[i - 2];
-        }
+        <div class="image-space">
+          <img src="fib3.png" alt="f" />
+        </div>
 
-        fib.forEach((num) => {
-          if (num % 2 === 0) {
-            sumEven += num;
+        <div class="image-space">
+          <img src="fib4.jpeg" alt="f" />
+        </div>
+      </aside>
+
+      <main class="content">
+        <h1>Fibonacci Sum Calculator</h1>
+        <div id="fib-output" class="fib-container"></div>
+        <script>
+          function calculateFibonacci(n) {
+            let fib = [1, 1];
+            let sumEven = 0;
+
+            for (let i = 2; i < n; i++) {
+              fib[i] = fib[i - 1] + fib[i - 2];
+            }
+
+            fib.forEach((num) => {
+              if (num % 2 === 0) {
+                sumEven += num;
+              }
+            });
+
+            let resultDiv = document.getElementById("fib-output");
+            resultDiv.innerHTML = "<h2>Fibonacci Numbers:</h2>";
+            let listDiv = document.createElement("div");
+            listDiv.classList.add("fib-list");
+            fib.forEach((num) => {
+              let p = document.createElement("p");
+              p.textContent = num;
+              listDiv.appendChild(p);
+            });
+            resultDiv.appendChild(listDiv);
+            resultDiv.innerHTML +=
+              "<h2>Sum of even Fibonacci numbers: " + sumEven + "</h2>";
           }
-        });
 
-        let resultDiv = document.createElement("div");
-        resultDiv.innerHTML = "<h2>Fibonacci Numbers:</h2>";
-        resultDiv.classList.add("fib-container");
-        let listDiv = document.createElement("div");
-        listDiv.classList.add("fib-list");
-        fib.forEach((num) => {
-          let p = document.createElement("p");
-          p.textContent = num;
-          listDiv.appendChild(p);
-        });
-        resultDiv.appendChild(listDiv);
-        resultDiv.innerHTML +=
-          "<h2>Sum of even Fibonacci numbers: " + sumEven + "</h2>";
-        document.body.appendChild(resultDiv);
-      }
+          let n = prompt("Enter the number of Fibonacci numbers:");
+          if (n !== null && !isNaN(n) && n > 0) {
+            calculateFibonacci(parseInt(n));
+          }
+        </script>
+      </main>
 
-      let n = prompt("Enter the number of Fibonacci numbers:");
-      if (n !== null && !isNaN(n) && n > 0) {
-        calculateFibonacci(parseInt(n));
-      }
-    </script>
+      <aside aria-label="F" class="right">
+        <h2>Fibonacci in Nature</h2>
+        <p>
+          The Fibonacci sequence appears in nature in spirals of shells,
+          sunflower heads, pinecones, and galaxies.
+        </p>
+        <div class="image-space">
+          <img src="fib1.jpg" alt="f" />
+        </div>
+
+        <div class="image-space">
+          <img src="fib2.jpg" alt="f" />
+        </div>
+      </aside>
+    </div>
   </body>
 </html>
