@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Roll Simulator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎲 Dice Roll Simulator 🎲</h1>
+      <p id="roll-message"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Times Rolled</th>
+            <th>Fraction (Decimal)</th>
+          </tr>
+        </thead>
+        <tbody id="dice-table">
+          <tr>
+            <td>1</td>
+            <td>0</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>0</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>0</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>0</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>0</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>0</td>
+            <td>0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      let rollCounts = [0, 0, 0, 0, 0, 0];
+      let totalRolls = 0;
+
+      function rollDice(n) {
+        for (let i = 0; i < n; i++) {
+          let roll = Math.floor(Math.random() * 6) + 1;
+          rollCounts[roll - 1]++;
+        }
+        totalRolls += n;
+        updateTable();
+      }
+
+      function updateTable() {
+        let tableBody = document.getElementById("dice-table");
+        let rollMessage = document.getElementById("roll-message");
+        tableBody.innerHTML = "";
+        rollMessage.textContent = `Rolled the dice ${totalRolls} times.`;
+
+        for (let i = 0; i < 6; i++) {
+          let fraction = totalRolls
+            ? (rollCounts[i] / totalRolls).toFixed(2)
+            : "0.00";
+          tableBody.innerHTML += `<tr><td>${i + 1}</td><td>${
+            rollCounts[i]
+          }</td><td>${fraction}</td></tr>`;
+        }
+      }
+
+      let n = prompt("Enter the number of times to roll the dice:");
+      if (n !== null && !isNaN(n) && n > 0) {
+        rollDice(parseInt(n));
+      } else {
+        alert("Invalid input. Please refresh and enter a valid number.");
+      }
+    </script>
+  </body>
+</html>

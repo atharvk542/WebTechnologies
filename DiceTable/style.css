@@ -1,0 +1,54 @@
+@keyframes rainbowBG {
+  0% {
+    background: #ff0000;
+  }
+  16% {
+    background: #ff7f00;
+  }
+  33% {
+    background: #ffff00;
+  }
+  50% {
+    background: #00ff00;
+  }
+  66% {
+    background: #0000ff;
+  }
+  83% {
+    background: #4b0082;
+  }
+  100% {
+    background: #9400d3;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin: 20px;
+  color: white;
+  animation: rainbowBG 10s infinite linear alternate;
+  transition: background 0.5s ease-in-out;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px;
+  border: 1px solid white;
+  text-align: center;
+}
+th {
+  background: rgba(255, 255, 255, 0.3);
+}
