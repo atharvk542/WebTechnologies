@@ -7,55 +7,156 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>🎲 Dice Roll Simulator 🎲</h1>
-      <p id="roll-message"></p>
-      <table>
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Times Rolled</th>
-            <th>Fraction (Decimal)</th>
-          </tr>
-        </thead>
-        <tbody id="dice-table">
-          <tr>
-            <td>1</td>
-            <td>0</td>
-            <td>0.00</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>0</td>
-            <td>0.00</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>0</td>
-            <td>0.00</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>0</td>
-            <td>0.00</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>0</td>
-            <td>0.00</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>0</td>
-            <td>0.00</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="wrapper">
+      <div class="side-panel left">
+        <h2>Probability Info</h2>
+        <p>
+          The probability of rolling any number on a fair 6-sided die is 1/6 or
+          ~16.67%.
+        </p>
+        <p>
+          Each roll is independent, meaning past rolls do not influence future
+          outcomes.
+        </p>
+        <p>Expected frequency: Total rolls ÷ 6</p>
+      </div>
+
+      <div class="container">
+        <h1>🎲 Dice Roll Simulator 🎲</h1>
+        <p id="roll-message"></p>
+
+        <h2>6-Sided Die</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Times Rolled</th>
+              <th>Fraction (Decimal)</th>
+            </tr>
+          </thead>
+          <tbody id="dice-table">
+            <tr>
+              <td>1</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>12-Sided Die</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Times Rolled</th>
+              <th>Fraction (Decimal)</th>
+            </tr>
+          </thead>
+          <tbody id="dice12-table">
+            <tr>
+              <td>1</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>0</td>
+              <td>0.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="side-panel right">
+        <h2>Dice Image</h2>
+        <img src="dice.png" alt="dice" style="width: 100px; height: auto" />
+        <p>
+          Dice are used in many games and simulations, with variations like D20
+          and D12.
+        </p>
+      </div>
     </div>
 
     <script>
       let rollCounts = [0, 0, 0, 0, 0, 0];
+      let rollCounts12 = new Array(12).fill(0);
       let totalRolls = 0;
+      let totalRolls12 = 0;
 
       function rollDice(n) {
         for (let i = 0; i < n; i++) {
@@ -64,6 +165,15 @@
         }
         totalRolls += n;
         updateTable();
+      }
+
+      function rollDice12(n) {
+        for (let i = 0; i < n; i++) {
+          let roll = Math.floor(Math.random() * 12) + 1;
+          rollCounts12[roll - 1]++;
+        }
+        totalRolls12 += n;
+        updateTable12();
       }
 
       function updateTable() {
@@ -82,11 +192,28 @@
         }
       }
 
-      let n = prompt("Enter the number of times to roll the dice:");
+      function updateTable12() {
+        let tableBody = document.getElementById("dice12-table");
+        tableBody.innerHTML = "";
+
+        for (let i = 0; i < 12; i++) {
+          let fraction = totalRolls12
+            ? (rollCounts12[i] / totalRolls12).toFixed(2)
+            : "0.00";
+          tableBody.innerHTML += `<tr><td>${i + 1}</td><td>${
+            rollCounts12[i]
+          }</td><td>${fraction}</td></tr>`;
+        }
+      }
+
+      let n = prompt("Enter the number of times to roll the 6-sided dice:");
       if (n !== null && !isNaN(n) && n > 0) {
         rollDice(parseInt(n));
-      } else {
-        alert("Invalid input. Please refresh and enter a valid number.");
+      }
+
+      let m = prompt("Enter the number of times to roll the 12-sided dice:");
+      if (m !== null && !isNaN(m) && m > 0) {
+        rollDice12(parseInt(m));
       }
     </script>
   </body>
