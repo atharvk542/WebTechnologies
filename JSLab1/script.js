@@ -4,7 +4,7 @@ function displayDivisibles(start, end) {
   output.innerHTML = "";
 
   for (let i = start; i <= end; i++) {
-    // Based on divisibility, the text and color of the current list item is updated
+    // Based on divisibility, the text and color of the current element is updated
     let text = "";
     let className = "";
     if (i % 3 === 0 && i % 5 === 0) {
@@ -18,18 +18,19 @@ function displayDivisibles(start, end) {
       className = "red";
     }
 
-    // Makes sure that the text exists and creates a list element with appropriate text / color
+    // Makes sure that the text exists and creates a paragraph element with appropriate text / color
     if (text) {
-      let li = document.createElement("li");
-      li.textContent = text;
-      li.className = className;
-      output.appendChild(li);
+      let p = document.createElement("p");
+      p.textContent = text;
+      p.className = className;
+      output.appendChild(p);
     }
   }
+
   document.getElementById("end").textContent = "The end";
 }
 
-// Prompts for the first and second numbers 
+// Prompts for the first and second numbers
 function startPrompt() {
   let num1 = parseInt(prompt("Enter the first number:"));
   let num2;
