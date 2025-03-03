@@ -1,0 +1,43 @@
+body {
+  font-family: cursive;
+  text-align: center;
+  background-color: #b3877d;
+}
+h1 {
+  font-size: 2em;
+  font-style: italic;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  background-color: #7d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+}
+.controls button {
+  background-color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  width: 100%;
+  font-size: 1em;
+  cursor: pointer;
+}
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+canvas {
+  border: 2px solid #400000;
+  background-color: #d4a397;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
