@@ -1,0 +1,137 @@
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body and basic layout */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ccc; /* Gray background */
+}
+
+/* Header / Nav bar */
+header {
+  display: flex;
+  align-items: center;
+  background-color: #2c3e50; /* Different color for the navbar */
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.logo {
+  width: 60px; /* Adjust as needed */
+  margin-right: 10px;
+}
+
+header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Date Panel */
+.date-panel {
+  background-color: #fff;
+  margin: 10px 20px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.date-panel p {
+  font-size: 18px; /* Slightly larger text */
+  font-weight: bold;
+}
+
+/* Main layout */
+main {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+/* Left panel container */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 20px;
+}
+
+/* Top panel: form container */
+.top-panel {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+#rentForm label {
+  display: block;
+  margin-top: 10px;
+}
+
+#rentForm input,
+#rentForm select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+#rentButton {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#rentButton:hover {
+  background-color: #0056b3;
+}
+
+/* Bottom panel: rented car info */
+.bottom-panel {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* Right panel */
+.right-panel {
+  flex: none;
+  width: 450px; /* Smaller and more square-like */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* Car grid container */
+.car-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual car item */
+.car-item {
+  text-align: center;
+}
+
+.car-item img {
+  width: 120px; /* Adjust as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Dotted divider line */
+.divider {
+  border-top: 2px dotted #333;
+  margin: 20px 0;
+}

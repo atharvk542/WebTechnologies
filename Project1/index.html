@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMSA Car Rental</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header / Nav bar -->
+    <header>
+      <!-- Replace "logo.png" with your actual logo -->
+      <img src="logo.png" alt="IMSA Logo" class="logo" />
+      <h1>Car Rental</h1>
+    </header>
+
+    <!-- Date Panel -->
+    <div class="date-panel">
+      <!-- Replace text with dynamic date if desired -->
+      <p>Today is Mon Feb 24 2025</p>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Left Panel with 2 sub-panels (top and bottom) -->
+      <section class="left-panel">
+        <!-- Top panel: form -->
+        <div class="top-panel">
+          <form id="rentForm">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+            />
+
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+
+            <label for="carChoice">Car Choice:</label>
+            <select id="carChoice" name="carChoice">
+              <option value="">--Select a Car--</option>
+              <option value="Toyota Corolla">Toyota Corolla</option>
+              <option value="Toyota Camry">Toyota Camry</option>
+              <option value="Audi S8">Audi S8</option>
+              <option value="BMW X5">BMW X5</option>
+              <!-- Add more options as needed -->
+            </select>
+
+            <label for="days">Number of Days:</label>
+            <input
+              type="number"
+              id="days"
+              name="days"
+              min="1"
+              placeholder="Enter number of days"
+            />
+
+            <button type="submit" id="rentButton">Rent</button>
+          </form>
+        </div>
+
+        <!-- Bottom panel: rented car info -->
+        <div class="bottom-panel">
+          <p id="rentedCarInfo">No cars have been rented yet</p>
+        </div>
+      </section>
+
+      <!-- Right Panel: Car Thumbnails -->
+      <section class="right-panel">
+        <div class="car-grid">
+          <div class="car-item">
+            <img src="toyota_corolla.jpg" alt="Toyota Corolla" />
+            <p>Toyota Corolla</p>
+          </div>
+          <div class="car-item">
+            <img src="toyota_camry.jpg" alt="Toyota Camry" />
+            <p>Toyota Camry</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="car-grid">
+          <div class="car-item">
+            <img src="audi_s8.jpg" alt="Audi S8" />
+            <p>Audi S8</p>
+          </div>
+          <div class="car-item">
+            <img src="bmw_x5.jpg" alt="BMW X5" />
+            <p>BMW X5</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Link to external JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
