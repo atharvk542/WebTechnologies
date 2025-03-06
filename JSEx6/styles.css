@@ -4,7 +4,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  background: linear-gradient(to right, #ee53fa, #feb47b);
 }
 
 .calculator {
@@ -12,7 +12,8 @@ body {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 300px; /* Adjusted width to make it more narrow */
+  box-shadow: 5px black;
+  width: 300px;
 }
 
 input {

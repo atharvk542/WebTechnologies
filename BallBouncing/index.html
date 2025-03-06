@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bouncing Ball with Freehand Drawing</title>
+    <style>
+      /* Style the canvas */
+      #myCanvas {
+        border: 5px solid red;
+        background-color: white;
+        display: block;
+      }
+      /* Container for the buttons */
+      #controls {
+        margin-top: 10px;
+      }
+      /* Position buttons to the bottom left of the canvas container */
+      #container {
+        position: relative;
+        width: 500px;
+      }
+      #controls {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <canvas id="myCanvas" width="500" height="500"></canvas>
+      <div id="controls">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+
+      let animationId;
+      let running = false;
+
+      // Define the ball properties
+      const ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 15, // 30px diameter
+        speed: 3,
+        dx: 0,
+        dy: 0,
+      };
+
+      // Initialize ball with random direction
+      function initBall() {
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        const angle = Math.random() * Math.PI * 2;
+        ball.dx = ball.speed * Math.cos(angle);
+        ball.dy = ball.speed * Math.sin(angle);
+      }
+
+      // Array to store drawn lines (each line is an array of points)
+      const lines = [];
+      let currentLine = null;
+
+      // Get canvas-relative coordinates
+      function getCanvasCoords(e) {
+        const rect = canvas.getBoundingClientRect();
+        let clientX, clientY;
+        if (e.touches) {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+        return {
+          x: clientX - rect.left,
+          y: clientY - rect.top,
+        };
+      }
+
+      // Mouse and touch event listeners for freehand drawing
+      canvas.addEventListener("mousedown", (e) => {
+        currentLine = [];
+        const pos = getCanvasCoords(e);
+        currentLine.push(pos);
+      });
+
+      canvas.addEventListener("mousemove", (e) => {
+        if (!currentLine) return;
+        const pos = getCanvasCoords(e);
+        currentLine.push(pos);
+      });
+
+      canvas.addEventListener("mouseup", () => {
+        if (currentLine) {
+          lines.push(currentLine);
+          currentLine = null;
+        }
+      });
+
+      canvas.addEventListener("mouseout", () => {
+        if (currentLine) {
+          lines.push(currentLine);
+          currentLine = null;
+        }
+      });
+
+      // Touch events for mobile devices
+      canvas.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        currentLine = [];
+        const pos = getCanvasCoords(e);
+        currentLine.push(pos);
+      });
+
+      canvas.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        if (!currentLine) return;
+        const pos = getCanvasCoords(e);
+        currentLine.push(pos);
+      });
+
+      canvas.addEventListener("touchend", (e) => {
+        if (currentLine) {
+          lines.push(currentLine);
+          currentLine = null;
+        }
+      });
+
+      // Draw all stored lines (and the line in progress)
+      function drawLines() {
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        lines.forEach((line) => {
+          if (line.length > 1) {
+            ctx.beginPath();
+            ctx.moveTo(line[0].x, line[0].y);
+            for (let i = 1; i < line.length; i++) {
+              ctx.lineTo(line[i].x, line[i].y);
+            }
+            ctx.stroke();
+          }
+        });
+        // Draw current line (if any)
+        if (currentLine && currentLine.length > 1) {
+          ctx.beginPath();
+          ctx.moveTo(currentLine[0].x, currentLine[0].y);
+          for (let i = 1; i < currentLine.length; i++) {
+            ctx.lineTo(currentLine[i].x, currentLine[i].y);
+          }
+          ctx.stroke();
+        }
+      }
+
+      // Draw the ball
+      function drawBall() {
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Update ball position and handle wall collisions
+      function updateBall() {
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        // Bounce off left/right walls
+        if (ball.x - ball.radius < 0) {
+          ball.x = ball.radius;
+          ball.dx = -ball.dx;
+        }
+        if (ball.x + ball.radius > canvas.width) {
+          ball.x = canvas.width - ball.radius;
+          ball.dx = -ball.dx;
+        }
+        // Bounce off top/bottom walls
+        if (ball.y - ball.radius < 0) {
+          ball.y = ball.radius;
+          ball.dy = -ball.dy;
+        }
+        if (ball.y + ball.radius > canvas.height) {
+          ball.y = canvas.height - ball.radius;
+          ball.dy = -ball.dy;
+        }
+      }
+
+      // Animation loop: clear, redraw lines, update and draw ball
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawLines();
+        updateBall();
+        drawBall();
+        animationId = requestAnimationFrame(animate);
+      }
+
+      // Button event listeners
+      document.getElementById("startBtn").addEventListener("click", () => {
+        if (!running) {
+          running = true;
+          initBall();
+          animate();
+        }
+      });
+
+      document.getElementById("stopBtn").addEventListener("click", () => {
+        if (running) {
+          running = false;
+          cancelAnimationFrame(animationId);
+        }
+      });
+    </script>
+  </body>
+</html>
