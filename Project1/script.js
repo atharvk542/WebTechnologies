@@ -1,27 +1,72 @@
-// Basic script to handle the renting logic
-const rentForm = document.getElementById("rentForm");
-const rentedCarInfo = document.getElementById("rentedCarInfo");
+let rentals = []; // Store active rentals
+let basePrice = 50; // Base price per day (fake number)
 
-rentForm.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent page reload
+document.getElementById("nextDay").addEventListener("click", function () {
+  let dateElement = document.getElementById("currentDate");
+  let currentDate = new Date(dateElement.innerText.split("Today is ")[1]);
+  currentDate.setDate(currentDate.getDate() + 1);
+  dateElement.innerText = "Today is " + currentDate.toDateString();
 
-  const nameValue = document.getElementById("name").value.trim();
-  const emailValue = document.getElementById("email").value.trim();
-  const carChoiceValue = document.getElementById("carChoice").value;
-  const daysValue = document.getElementById("days").value;
+  // Decrement rental days left
+  rentals.forEach((rental) => rental.daysLeft--);
 
-  // Simple validation
-  if (!nameValue || !emailValue || !carChoiceValue || !daysValue) {
-    rentedCarInfo.textContent = "Please fill out all fields.";
+  // Remove expired rentals
+  rentals = rentals.filter((rental) => rental.daysLeft > 0);
+
+  // Update invoice
+  updateInvoice();
+});
+
+document
+  .getElementById("rentForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let carChoice = document.getElementById("carChoice").value;
+    let days = parseInt(document.getElementById("days").value);
+
+    if (!name || !carChoice || !days) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    let dateElement = document.getElementById("currentDate");
+    let startDate = new Date(dateElement.innerText.split("Today is ")[1]);
+    let endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + days);
+
+    let totalAmountDue = days * basePrice;
+
+    rentals.push({
+      name,
+      carChoice,
+      daysLeft: days,
+      totalAmountDue,
+      startDate: startDate.toDateString(),
+      endDate: endDate.toDateString(),
+    });
+
+    updateInvoice();
+  });
+
+function updateInvoice() {
+  let invoiceElement = document.getElementById("rentedCarInfo");
+
+  if (rentals.length === 0) {
+    invoiceElement.innerText = "No cars have been rented yet.";
     return;
   }
 
-  // Display the rented car info
-  rentedCarInfo.innerHTML = `
-    <strong>Rented Car Information:</strong><br />
-    Name: ${nameValue}<br />
-    Email: ${emailValue}<br />
-    Car: ${carChoiceValue}<br />
-    Number of Days: ${daysValue}
-  `;
-});
+  invoiceElement.innerHTML = rentals
+    .map(
+      (rental) => `
+    <p><strong>${rental.name}</strong> has rented a <strong>${rental.carChoice}</strong></p>
+    <p>Rental Period: ${rental.startDate} - ${rental.endDate}</p>
+    <p>Days Left: ${rental.daysLeft}</p>
+    <p>Total Amount Due: $${rental.totalAmountDue}</p>
+    <hr>
+  `
+    )
+    .join("");
+}
