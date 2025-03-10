@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Text</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      h1 {
+        color: green;
+      }
+      .hover-text {
+        font-size: 20px;
+        color: blue;
+        cursor: pointer;
+        text-transform: lowercase;
+      }
+      .click-text {
+        font-size: 24px;
+        color: blue;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body onload="initializeEvents()">
+    <h1>Please work on the text below</h1>
+    <p onmouseover="initializeEvents" class="hover-text" id="hoverText">
+      MOUSEOVER TO MAKE ME LOWERCASE/UPPERCASE
+    </p>
+    <p onclick="toggleFontSize" class="click-text" id="clickText">onclick Change my font</p>
+
+    <script>
+      function setTextUppercase(element) {
+        element.style.textTransform = "uppercase";
+      }
+
+      function setTextLowercase(element) {
+        element.style.textTransform = "lowercase";
+      }
+
+      function toggleFontSize(element) {
+        element.style.fontSize =
+          element.style.fontSize === "24px" ? "30px" : "24px";
+      }
+
+      function initializeEvents() {
+        const hoverText = document.getElementById("hoverText");
+        hoverText.addEventListener("mouseover", function () {
+          setTextUppercase(this);
+        });
+        hoverText.addEventListener("mouseout", function () {
+          setTextLowercase(this);
+        });
+
+        document
+          .getElementById("clickText")
+          .addEventListener("click", function () {
+            toggleFontSize(this);
+          });
+      }
+    </script>
+  </body>
+</html>
