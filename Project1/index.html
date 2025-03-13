@@ -5,11 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMSA Car Rental</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #d3d3d3;
+      }
+      .display-panel {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        width: 80%;
+        margin: 20px auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+      .car-row {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+      }
+      .car-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+      }
+      .car {
+        width: 100px;
+        position: relative;
+        z-index: 10;
+      }
+      .car-name {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+      .rented-text {
+        font-weight: bold;
+        font-size: 16px;
+        color: red;
+        width: 100px;
+        display: inline-block;
+        text-align: center;
+        line-height: 100px;
+      }
+      .street {
+        width: 100%;
+        height: 50px;
+        background-color: gray;
+        position: relative;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+      .lane-markers {
+        width: 100%;
+        height: 4px;
+        background: repeating-linear-gradient(
+          to right,
+          white 0%,
+          white 10%,
+          transparent 10%,
+          transparent 20%
+        );
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    </style>
   </head>
   <body>
     <header>
-      <img src="logo.png" alt="IMSA Logo" class="logo" />
-      <h1>Car Rental</h1>
+      <h1>IMSA Car Rental</h1>
     </header>
 
     <div class="date-panel">
@@ -66,65 +133,235 @@
         </div>
 
         <div class="invoice-panel">
-          <p id="rentedCarInfo">No cars have been rented yet.</p>
+          <p><strong>Rental Invoice:</strong></p>
+          <ul id="invoiceList"></ul>
         </div>
       </section>
 
       <section class="right-section">
-        <div class="car-container">
-          <div class="car-grid top-row">
-            <div class="car-item">
-              <img src="corolla.png" alt="Toyota Corolla" />
-              <p>Toyota Corolla</p>
+        <div class="display-panel">
+          <div class="car-row top-row">
+            <div class="car-container">
+              <img
+                src="corolla.png"
+                alt="Toyota Corolla"
+                class="car"
+                id="Toyota Corolla"
+              />
+              <p class="car-name">Toyota Corolla</p>
             </div>
-            <div class="car-item">
-              <img src="camry.png" alt="Toyota Camry" />
-              <p>Toyota Camry</p>
+            <div class="car-container">
+              <img
+                src="camry.png"
+                alt="Toyota Camry"
+                class="car"
+                id="Toyota Camry"
+              />
+              <p class="car-name">Toyota Camry</p>
             </div>
-            <div class="car-item">
-              <img src="accord.png" alt="Honda Accord" />
-              <p>Honda Accord</p>
+            <div class="car-container">
+              <img
+                src="accord.png"
+                alt="Honda Accord"
+                class="car"
+                id="Honda Accord"
+              />
+              <p class="car-name">Honda Accord</p>
             </div>
-            <div class="car-item">
-              <img src="niro.jpg" alt="Kia Niro" />
-              <p>Kia Niro</p>
+            <div class="car-container">
+              <img src="niro.jpg" alt="Kia Niro" class="car" id="Kia Niro" />
+              <p class="car-name">Kia Niro</p>
             </div>
-            <div class="car-item">
-              <img src="avalon.avif" alt="Toyota Avalon" />
-              <p>Toyota Avalon</p>
+            <div class="car-container">
+              <img
+                src="avalon.avif"
+                alt="Toyota Avalon"
+                class="car"
+                id="Toyota Avalon"
+              />
+              <p class="car-name">Toyota Avalon</p>
             </div>
           </div>
 
           <div class="street">
-            <div class="street-background"></div>
+            <div class="lane-markers"></div>
           </div>
 
-          <div class="car-grid bottom-row">
-            <div class="car-item">
-              <img src="a6.png" alt="Audi S6" />
-              <p>Audi S6</p>
+          <div class="car-row bottom-row">
+            <div class="car-container">
+              <img src="a6.png" alt="Audi S6" class="car" id="Audi S6" />
+              <p class="car-name">Audi S6</p>
             </div>
-            <div class="car-item">
-              <img src="750.png" alt="BMW 750" />
-              <p>BMW 750</p>
+            <div class="car-container">
+              <img src="750.png" alt="BMW 750" class="car" id="BMW 750" />
+              <p class="car-name">BMW 750</p>
             </div>
-            <div class="car-item">
-              <img src="m4.png" alt="BMW M4" />
-              <p>BMW M4</p>
+            <div class="car-container">
+              <img src="m4.png" alt="BMW M4" class="car" id="BMW M4" />
+              <p class="car-name">BMW M4</p>
             </div>
-            <div class="car-item">
-              <img src="s550.png" alt="Mercedes S550" />
-              <p>Mercedes S550</p>
+            <div class="car-container">
+              <img
+                src="s550.png"
+                alt="Mercedes S550"
+                class="car"
+                id="Mercedes S550"
+              />
+              <p class="car-name">Mercedes S550</p>
             </div>
-            <div class="car-item">
-              <img src="540.png" alt="BMW 540" />
-              <p>BMW 540</p>
+            <div class="car-container">
+              <img src="540.png" alt="BMW 540" class="car" id="BMW 540" />
+              <p class="car-name">BMW 540</p>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+      let currentDate = new Date("2025-02-24");
+      let rentedCars = {};
+
+      // Prices for each car (arbitrary values)
+      const carPrices = {
+        "Toyota Corolla": "$30/day",
+        "Toyota Camry": "$35/day",
+        "Honda Accord": "$32/day",
+        "Kia Niro": "$28/day",
+        "Toyota Avalon": "$40/day",
+        "Audi S6": "$70/day",
+        "BMW 750": "$80/day",
+        "BMW M4": "$85/day",
+        "Mercedes S550": "$90/day",
+        "BMW 540": "$75/day",
+      };
+
+      function updateDateDisplay() {
+        document.getElementById(
+          "currentDate"
+        ).textContent = `Today is ${currentDate.toDateString()}`;
+      }
+
+      document.getElementById("nextDay").addEventListener("click", function () {
+        currentDate.setDate(currentDate.getDate() + 1);
+        updateDateDisplay();
+
+        document.querySelectorAll("#invoiceList li").forEach((invoice) => {
+          let daysLeftElem = invoice.querySelector(".days-left");
+          let daysLeft = parseInt(daysLeftElem.textContent);
+          let carName = invoice.dataset.car;
+          let carImage = document.getElementById(carName);
+
+          if (daysLeft > 1) {
+            daysLeftElem.textContent = daysLeft - 1;
+          } else {
+            invoice.remove();
+            delete rentedCars[carName];
+
+            // Bring the car back by removing the "Rented" text (if it exists)
+            if (carImage) {
+              let rentedText =
+                carImage.parentNode.querySelector(".rented-text");
+              if (rentedText) {
+                rentedText.remove();
+              }
+              carImage.style.display = "block";
+              anime({
+                targets: carImage,
+                translateX: 0,
+                translateY: 0,
+                duration: 1500,
+                easing: "easeInOutQuad",
+              });
+            }
+          }
+        });
+      });
+
+      document
+        .getElementById("rentForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const selectedCar = document.getElementById("carChoice").value;
+          const rentalDays =
+            parseInt(document.getElementById("days").value) || 1;
+          const carImage = document.getElementById(selectedCar);
+
+          if (!carImage) {
+            alert("Please select a car to rent.");
+            return;
+          }
+
+          if (rentedCars[selectedCar]) {
+            alert("This car is already rented. Please choose another.");
+            return;
+          }
+
+          rentedCars[selectedCar] = true;
+
+          // Clear any existing invoice so only one invoice appears at a time
+          document.getElementById("invoiceList").innerHTML = "";
+
+          const invoiceEntry = document.createElement("li");
+          invoiceEntry.dataset.car = selectedCar;
+          invoiceEntry.innerHTML = `
+          <strong>${name}</strong> (${email})<br>
+          <strong>Car:</strong> ${selectedCar} <br>
+          <strong>Price:</strong> ${carPrices[selectedCar]}<br>
+          <strong>Days Left:</strong> <span class="days-left">${rentalDays}</span> <br>
+          <img src="${carImage.src}" alt="${selectedCar}" width="100">
+        `;
+          document.getElementById("invoiceList").appendChild(invoiceEntry);
+
+          // Calculate the vertical translation needed to move the car to the center of the street
+          const street = document.querySelector(".street");
+          const streetRect = street.getBoundingClientRect();
+          const carRect = carImage.getBoundingClientRect();
+          const targetY =
+            streetRect.top +
+            streetRect.height / 2 -
+            (carRect.top + carRect.height / 2);
+
+          // Animate the car image: move vertically to the street's center, then slide left until its left edge reaches the street's left edge.
+          anime({
+            targets: carImage,
+            translateY: targetY,
+            duration: 1000,
+            easing: "easeInOutQuad",
+            complete: function () {
+              setTimeout(() => {
+                // Recalculate positions after vertical movement
+                let streetRectAfter = document
+                  .querySelector(".street")
+                  .getBoundingClientRect();
+                let carRectAfter = carImage.getBoundingClientRect();
+                // Calculate how much to move left so the car's left edge aligns with the street's left edge
+                let targetX = streetRectAfter.left - carRectAfter.left;
+                anime({
+                  targets: carImage,
+                  translateX: targetX,
+                  duration: 1500,
+                  easing: "easeInOutQuad",
+                  complete: function () {
+                    carImage.style.display = "none";
+                    const rentedText = document.createElement("div");
+                    rentedText.classList.add("rented-text");
+                    rentedText.textContent = "Rented";
+                    carImage.parentNode.insertBefore(
+                      rentedText,
+                      carImage.nextSibling
+                    );
+                  },
+                });
+              }, 300);
+            },
+          });
+        });
+
+      updateDateDisplay();
+    </script>
   </body>
 </html>
