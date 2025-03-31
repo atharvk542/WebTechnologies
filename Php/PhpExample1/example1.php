@@ -26,16 +26,16 @@
     // Exercise 2
     echo "<h2>This is the second exercise:</h2>";
     if ($name === 'Mario') {
-        print "I am $name.<br>";
+        echo "I am $name.<br>";
     }
 
     // Exercise 3
     echo "<h2>This is the third exercise:</h2>";
     $name = 'awaken';
     if ($name === 'Mario') {
-        print "I am $name.<br>";
+        echo "I am $name.<br>";
     } else {
-        print "No, no, no. That is not my name!<br>";
+        echo "No, no, no. That is not my name!<br>";
     }
 
     // Exercise 4
