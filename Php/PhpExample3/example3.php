@@ -69,7 +69,7 @@
         /* Preformatted text block for print_r / var_dump output */
         pre {
             background: #f0f0f0;
-            border: 1px solid #999;
+            /* border removed for a cleaner look */
             display: inline-block;
             text-align: left; /* keep the alignment left for code dumps */
             padding: 8px;

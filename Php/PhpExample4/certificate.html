@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate</title>
+    <style>
+      body {
+        background-color: white;
+        font-family: "Georgia", serif;
+        text-align: center;
+        padding: 50px;
+      }
+      .certificate {
+        border: 10px solid gold;
+        padding: 20px;
+        width: 80%;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+      h1 {
+        font-size: 36px;
+        color: darkblue;
+      }
+      h2 {
+        font-size: 24px;
+        color: black;
+      }
+      p {
+        font-size: 18px;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="certificate">
+      <h1>PHP Certification</h1>
+      <h2>Presented to</h2>
+      <h2><?php echo htmlspecialchars($_GET['name'] ?? 'Recipient'); ?></h2>
+      <p>
+        For successfully passing the PHP Certification Exam with outstanding
+        performance.
+      </p>
+      <p>
+        Date:
+        <?php echo date('F j, Y'); ?>
+      </p>
+    </div>
+  </body>
+</html>

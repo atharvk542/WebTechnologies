@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PHP Certification Quiz</title>
+    <style>
+      body {
+        background-color: #555; /* Slightly darker shade */
+        color: white;
+        text-align: center;
+        font-family: "Verdana", sans-serif; /* Changed font */
+        font-size: 18px; /* Increased font size */
+      }
+      .question {
+        margin: 20px;
+      }
+      .submit-btn img {
+        width: 120px; /* Slightly larger button */
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PHP Certification Quiz</h1>
+    <p>Answer the questions below to earn your certification:</p>
+
+    <form action="response.php" method="post">
+      <p>
+        Your Name:
+        <input
+          type="text"
+          name="name"
+          pattern="[A-Za-z ]+"
+          title="Only letters and spaces allowed"
+          required
+        />
+      </p>
+
+      <div class="question">
+        What does the PHP statement <strong>echo</strong> do?<br />
+        <input type="radio" name="q1" value="a" required /> Outputs text to the
+        browser<br />
+        <input type="radio" name="q1" value="b" /> Adds two numbers together<br />
+        <input type="radio" name="q1" value="c" /> Deletes a file<br />
+      </div>
+
+      <div class="question">
+        What does the PHP function <strong>cos()</strong> do?<br />
+        <input type="radio" name="q2" value="a" required /> Calculates the
+        cosine of a number<br />
+        <input type="radio" name="q2" value="b" /> Calculates the tangent of a
+        number<br />
+        <input type="radio" name="q2" value="c" /> Calculates the sine of a
+        number<br />
+      </div>
+
+      <div class="question">
+        What does the PHP function <strong>mail()</strong> do?<br />
+        <input type="radio" name="q3" value="a" required /> Sends an email<br />
+        <input type="radio" name="q3" value="b" /> Checks for new emails<br />
+        <input type="radio" name="q3" value="c" /> Deletes an email<br />
+      </div>
+
+      <div class="question">
+        What is the correct way to declare a variable in PHP?<br />
+        <input type="radio" name="q4" value="a" required /> $variableName =
+        "value";<br />
+        <input type="radio" name="q4" value="b" /> variableName = "value";<br />
+        <input type="radio" name="q4" value="c" /> var variableName =
+        "value";<br />
+      </div>
+
+      <div class="question">
+        Which of the following is a valid PHP loop?<br />
+        <input type="radio" name="q5" value="a" required /> for ($i = 0; $i <
+        10; $i++) { ... }<br />
+        <input type="radio" name="q5" value="b" /> while ($i < 10) { ... }<br />
+        <input type="radio" name="q5" value="c" /> Both of the above<br />
+      </div>
+
+      <div class="submit-btn">
+        <button type="submit">
+          <img src="certify-me.gif" alt="Certify Me" />
+        </button>
+      </div>
+    </form>
+  </body>
+</html>
